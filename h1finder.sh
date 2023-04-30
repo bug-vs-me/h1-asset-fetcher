@@ -21,7 +21,7 @@ done
 sort -u programs.txt -o programs.txt
 while read -r handle
 do
-  response=$(curl -s -X GET -u "$API_USERNAME:$API_KEY" -H 'Accept: application/json' "https://api.hackerone.com/v1/hackers/programs/$handle" | jq -r '.relationships.structured_scopes.data[] | select(.attributes.asset_type == "URL" and .attributes.eligible_for_submission == true) | .attributes.asset_identifier')
+  response=$(curl -s -X GET -u "$API_USERNAME:$API_KEY" -H 'Accept: application/json' "https://api.hackerone.com/v1/hackers/programs/$handle" | jq -r '.relationships.structured_scopes.data[] | select(.attributes.asset_type == "URL" or select(.attributes.asset_type == "WILDCARD" and .attributes.eligible_for_submission == true) | .attributes.asset_identifier')
 echo $response >> target.txt
 echo $response
 done < programs.txt
