@@ -29,7 +29,15 @@ sort -u target.txt -o target.txt
 cat target.txt | tr -s ' ' '\n' | sort -u | sed '/^$/d' > final.txt
 grep '*' final.txt > wild.txt
 grep -v '*' final.txt > nonwild.txt
+rm final.txt
 sort -u wild.txt -o wild.txt
-echo "wild domain saved to wild.txt"
+
 sort -u nonwild.txt -o nonwild.txt
-echo " non wild scope domains saved to nonwild.txt"
+
+cat wild.txt
+cat nonwild.txt
+echo "."
+echo "."
+echo "."
+echo "."
+echo "BOTH FILES wild.txt AND nonwild.txt SAVED IN CURRENT DIRECTORY"
