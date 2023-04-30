@@ -36,6 +36,7 @@ sed -i 's/,/\n/g' nonwild.txt
 sort -u nonwild.txt -o nonwild.txt
 sed -i 's/https:\/\///g' nonwild.txt
 sed -i 's|^|https://|' nonwild.txt
+sed -i 's/https:\/\///g' wild.txt
 
 cat wild.txt
 cat nonwild.txt
