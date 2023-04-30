@@ -27,6 +27,7 @@ echo $response
 done < programs.txt
 sort -u target.txt -o target.txt
 cat target.txt | tr -s ' ' '\n' | sort -u | sed '/^$/d' > final.txt
+rm target.txt
 grep '*' final.txt > wild.txt
 grep -v '*' final.txt > nonwild.txt
 rm final.txt
