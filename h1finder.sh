@@ -33,6 +33,7 @@ grep -v '*' final.txt > nonwild.txt
 rm final.txt
 sort -u wild.txt -o wild.txt
 sed -i 's/,/\n/g' nonwild.txt
+sed -i 's/,/\n/g' wild.txt
 sort -u nonwild.txt -o nonwild.txt
 sed -i 's/https:\/\///g' nonwild.txt
 sed -i 's/http:\/\///g' nonwild.txt
