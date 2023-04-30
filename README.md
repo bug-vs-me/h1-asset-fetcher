@@ -12,4 +12,7 @@ https://github.com/bug-vs-me/bugbounty/blob/main/h1finder.sh#L16
 
 then just run
 
+`git clone https://github.com/bug-vs-me/bugbounty.git``
+
+
 ``bash h1finder.sh``
