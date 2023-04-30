@@ -32,7 +32,7 @@ grep '*' final.txt > wild.txt
 grep -v '*' final.txt > nonwild.txt
 rm final.txt
 sort -u wild.txt -o wild.txt
-
+sed -i 's/,/\n/g' nonwild.txt
 sort -u nonwild.txt -o nonwild.txt
 
 cat wild.txt
