@@ -20,3 +20,21 @@ mv h1finder /usr/bin/
 ```
 h1finder -t <token> -u <username>
 ```
+
+**wild.txt files output will look like this:**
+```
+hackerone-ext-content.com
+hackerone-user-content.com
+cloudflare.com
+cloudflarepartners.com
+teams.cloudflare.com
+```
+
+**nonwild.txt files output will look like this:**
+```
+a5s.hackerone-ext-content.com
+api.hackerone.com
+app.pullrequest.com
+b5s.hackerone-ext-content.com
+cover-photos-us-east-2.hackerone-user-content.com
+```
