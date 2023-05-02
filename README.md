@@ -8,11 +8,10 @@ note i had set this script to select(.attributes.offers_bounties == true)  in li
 
 https://github.com/bug-vs-me/bugbounty/blob/main/h1finder.sh#L16
 
+# Installation
 
-
-then just run
-
-``git clone https://github.com/bug-vs-me/bugbounty.git``
-
-
-``bash h1finder.sh``
+```
+git clone https://github.com/bug-vs-me/bugbounty.git
+mv h1finder /usr/bin/
+h1finder -t <token> -u <username>
+```
