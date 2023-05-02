@@ -14,5 +14,9 @@ git clone https://github.com/bug-vs-me/bugbounty.git
 cd bugbounty
 chmod +x h1finder
 mv h1finder /usr/bin/
+```
+
+# Usage
+```
 h1finder -t <token> -u <username>
 ```
