@@ -11,6 +11,8 @@ https://github.com/bug-vs-me/bugbounty/blob/main/h1finder.sh#L16
 **Please replace your api-token and username**
 ```
 git clone https://github.com/bug-vs-me/bugbounty.git
+cd bugbounty
+chmod +x h1finder
 mv h1finder /usr/bin/
 h1finder -t <token> -u <username>
 ```
