@@ -1,0 +1,53 @@
+#!/bin/bash
+
+while getopts "t:u:" opt; do
+  case $opt in
+    t)
+      API_KEY=$OPTARG
+      ;;
+    u)
+      API_USERNAME=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -z $API_KEY || -z $API_USERNAME ]]
+then
+  echo "Usage: htfinder -t <api_key> -u <api_username>"
+  exit 1
+fi
+
+# Retrieve list of programs
+page=1
+while [ true ]
+do
+  response=$(curl -s -X GET -u "$API_USERNAME:$API_KEY" -H "Accept: application/json" "https://api.hackerone.com/v1/hackers/programs/?page%5Bnumber%5D=$page&page%5Bsize%5D=100")
+  if [ "$(echo $response | jq '.data | length')" -eq 0 ]
+  then
+    break
+  fi
+  echo "$response" | jq -r '.data[] | select(.attributes.offers_bounties == true) | .attributes.handle' >> programs.txt
+  ((page++))
+done
+
+# Retrieve domains for each program
+while read -r handle
+do
+  curl -s -X GET -u "$API_USERNAME:$API_KEY" -H 'Accept: application/json' "https://api.hackerone.com/v1/hackers/programs/$handle" | jq -r '.relationships.structured_scopes.data[] | select((.attributes.asset_type=="URL" or .attributes.asset_type=="WILDCARD") and .attributes.eligible_for_submission==true) | .attributes.asset_identifier' | tr -s ' ' '\n' | sort -u | sed '/^$/d' | tr ',' '\n' | tee -a target.txt
+done < programs.txt
+
+grep '*' target.txt | grep -Eo '[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}' >> wild.txt
+grep -v '*' target.txt | grep -Eo '[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}' >> nonwild.txt
+
+## Removing unnecessary files
+rm -rf target.txt programs.txt
+
+echo -e "\033[1;31mwild.txt AND nonwild.txt BOTH FILES SAVED IN $(pwd)\033[0;0m"
