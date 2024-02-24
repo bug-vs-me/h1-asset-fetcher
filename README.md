@@ -14,6 +14,9 @@ chmod +x h1finder
 mv h1finder /usr/bin/
 ```
 
+![image](https://github.com/bug-vs-me/h1-asset-fetcher/assets/57610657/724b3e50-5f99-4e9a-90cd-218426a66be7)
+
+
 # Usage
 ```
 h1finder -t <token> -u <username> -b <true/false>
