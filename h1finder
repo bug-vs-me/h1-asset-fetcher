@@ -1,12 +1,16 @@
 #!/bin/bash
 
-while getopts "t:u:" opt; do
+USE_BOUNTY=true  # Default value
+while getopts "t:u:b:" opt; do
   case $opt in
     t)
       API_KEY=$OPTARG
       ;;
     u)
       API_USERNAME=$OPTARG
+      ;;
+    b)
+      USE_BOUNTY=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -21,7 +25,7 @@ done
 
 if [[ -z $API_KEY || -z $API_USERNAME ]]
 then
-  echo "Usage: htfinder -t <api_key> -u <api_username>"
+  echo "Usage: htfinder -t <api_key> -u <api_username> [-b <true/false>]"
   exit 1
 fi
 
@@ -34,7 +38,11 @@ do
   then
     break
   fi
-  echo "$response" | jq -r '.data[] | select(.attributes.offers_bounties == true) | .attributes.handle' >> programs.txt
+  if [ "$USE_BOUNTY" == "true" ]; then
+    echo "$response" | jq -r '.data[] | select(.attributes.offers_bounties == true) | .attributes.handle' >> programs.txt
+  else
+    echo "$response" | jq -r '.data[] | select(.attributes.offers_bounties == false) | .attributes.handle' >> programs.txt
+  fi
   ((page++))
 done
 
