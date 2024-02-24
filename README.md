@@ -8,8 +8,8 @@ You can get your API key from https://hackerone.com/settings/api_token/edit
 
 **Please replace your api-token and username**
 ```
-git clone https://github.com/bug-vs-me/bugbounty.git
-cd bugbounty
+git clone https://github.com/bug-vs-me/h1-asset-fetcher.git
+cd h1-asset-fetcher
 chmod +x h1finder
 mv h1finder /usr/bin/
 ```
