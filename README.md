@@ -2,9 +2,7 @@
 
 You can get your API key from https://hackerone.com/settings/api_token/edit  
 
-note i had set this script to select(.attributes.offers_bounties == true)  in line 16 if you want all domains just edit it to false
 
-https://github.com/bug-vs-me/bugbounty/blob/main/h1finder.sh#L16
 
 # Installation
 
@@ -18,8 +16,14 @@ mv h1finder /usr/bin/
 
 # Usage
 ```
-h1finder -t <token> -u <username>
+h1finder -t <token> -u <username> -b <true/false>
 ```
+
+-t = H1 token
+
+-u = h1 username
+
+-b = true or false, if you want bounty only target set it to true if you want vdp only set it to false
 
 **wild.txt files output will look like this:**
 ```
