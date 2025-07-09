@@ -6,7 +6,7 @@ You can get your API key from https://hackerone.com/settings/api_token/edit
 
 # Installation
 
-**Please replace your api-token and username**
+
 ```
 git clone https://github.com/bug-vs-me/h1-asset-fetcher.git
 cd h1-asset-fetcher
@@ -18,10 +18,15 @@ mv h1finder /usr/bin/
 
 
 # Usage
+
+**Please replace your api-token and username**
 ```
 h1finder -t <token> -u <username> -b <true/false>
 ```
 
+```
+h1finder -t bbbbbbbbbbbb -u bug_vs_me -b true
+```
 -t = H1 token
 
 -u = h1 username
